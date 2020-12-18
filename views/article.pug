@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    #theContent
+        #articleMain.comment
+            #userArea
+                        each user, j in users
+                            if user._id==article.author_id
+                                img(src='/upload/'+user.displaypic style='width:75px; height:75px; border-radius:50%; align: center')
+                                br
+                                a(href='/users/'+article.author_id)= user.username
+            #commentArea
+                h1=article.title
+                hr
+                p(style="padding:3%")=article.body
+                hr
+                if user
+                    if user.id == article.author_id
+                        a.btn.btn-default(href='/articles/edit/'+article._id) Edit
+                        a.btn.btn-default.delete-article(href='#',data-id=article._id) Delete
+        br
+        br
+        br
+        ul
+            each comment, i in comments
+                li.list-group-item.comment
+                    #userArea
+                        each user, j in users
+                            if user._id==comment.commenter_id
+                                img(src='/upload/'+user.displaypic style='width:50px; height:50px; border-radius:50%')
+                                br
+                                a(href='/users/'+comment.commenter_id)= user.username
+                    #commentArea
+                        p=comment.comment_time.toString().slice(3,15)
+                        hr
+                        p=comment.comment_body
+        if user
+            br
+            input.btn-primary(type="button", value="Add Comment", onclick='showTextBox()' id='showbox')
+        form(method='POST' action='/articles/'+article._id onsubmit='return validateComment()' id='csection' style='visibility: hidden')
+            #form-group
+                label(id='icbox' style='color: red; visibility: hidden') Cannot leave empty
+                br
+                textarea.form-control(id='cbox' name='cbox')
+            br
+            input.btn.btn-primary(type='submit', value='Post Comment')

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    #theContent
+        br
+        if user
+            if user.id==userdetails._id
+                a.btn.create-btn(href='/users/edit/'+userdetails._id)
+                    strong Edit Profile
+        if user
+            -var present=false;
+            each val in user.friendlist
+                if(userdetails._id == val)
+                    -present=true;
+                    break
+            if user.id!=userdetails._id && present==false
+                a.bttn.frnd-btn(href='#',frnd_id=userdetails._id, id='frnd')
+                    strong Add Friend
+        br
+        br
+        br
+        #userMain.comment
+            #userArea
+                h1= userdetails.username
+                img(src='/upload/'+userdetails.displaypic style='width:300px; height:300px; border-radius:50%')
+            #profileArea
+                p.profile-font
+                    strong Email: #{userdetails.email}
+                p.profile-font
+                    strong State: #{userdetails.state}
+                p.profile-font
+                    strong Interests: #{userdetails.interest}
+                p.profile-font
+                    strong About Me: #{userdetails.aboutme}
+        

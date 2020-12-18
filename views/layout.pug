@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        title ArticleSection
+        link(rel="stylesheet", href="/stylesheet/style.css")
+    #container
+        body
+            header
+                #upperbg
+                    a(href='/')
+                        img(src='/img/logo.png', alt='logo')
+                nav
+                    ul.nav-links
+                        li
+                            a.nav-item(href='/')
+                                b Home
+                        if user
+                            li
+                                a.nav-item(href='/users/'+user.id)
+                                    b=user.username
+                        li
+                            a.nav-item(href='#')
+                                b Support
+                        if user != null
+                            li
+                                a.nav-item(href='/users/logout')
+                                    b Logout
+                        else
+                            li
+                                a.nav-item(href='/users/login')
+                                    b Login
+                            li
+                                a.nav-item(href='/users/register')
+                                    b Register
+            block content
+            br
+            footer
+                hr
+                p
+                    strong Copyright &copy; 2019
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+        script(src="/js/script.js")

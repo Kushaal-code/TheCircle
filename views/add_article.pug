@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    #theContent
+        h1 #{title}
+        form(method='POST' action='/articles/add' onsubmit='return validateArticle()')
+            #form-group
+                label Title:
+                label(id='ititle' style='color: red; visibility: hidden') Enter a title
+                br
+                input.form-control(id='title' name='title' type='text')
+            #form-group
+                label Body:
+                label(id='ibody' style='color: red; visibility: hidden') Cannot leave empty
+                br
+                textarea.form-control(id='cbody' name='cbody')
+            br
+            input.btn.btn-primary(type='submit', value='Submit')
+            

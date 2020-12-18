@@ -1,0 +1,20 @@
+extends login_reg_layout
+
+block content
+    #login-reg
+        if errors
+            p.login-error 
+                strong #{errors}
+        if success
+            p.logout
+                strong #{success}
+        form(method='POST' action='/users/login')
+            #form-group
+                input.form-control(type='email', id='eid', name='username' placeholder='Email-ID')
+            #form-group
+                input.form-control(type='password', id='pwd', name='password' placeholder='Password')
+            input.btn.btn-primary(type='submit', value='Login')
+            br
+            br
+            p Don't have account?
+                a(href="/users/register") Create Account

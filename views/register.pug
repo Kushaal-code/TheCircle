@@ -1,0 +1,40 @@
+extends login_reg_layout
+
+block content
+    #login-reg
+        if errors
+            p.login-error 
+                strong #{errors}
+        form(method='POST' action='/users/register' onsubmit='return userRegisteration()')
+            #form-group
+                label Name:
+                label(id='iname' style='color: red; visibility: hidden')  Name is required
+                br
+                input.form-control(id='name' name='name' type='text')
+            #form-group
+                label Email:
+                label(id='iemail' style='color: red; visibility: hidden') Email is required
+                br
+                input.form-control(id='email' name='email' type='text')
+            #form-group
+                label Username:
+                label(id='iuname' style='color: red; visibility: hidden') Username is required
+                br
+                input.form-control(id='uname' name='username' type='text')
+            #form-group
+                label State:
+                label(id='istate' style='color: red; visibility: hidden') Fill this field
+                br
+                input.form-control(id='state' name='state' type='text')
+            #form-group
+                label Password:
+                label(id='ipwd' style='color: red; visibility: hidden') Password is required
+                br
+                input.form-control(id='pwd' name='password' type='password')
+            #form-group
+                label Confirm Password:
+                label(id='ire_pwd' style='color: red; visibility: hidden') Password does not match
+                br
+                input.form-control(id='re_pwd' name='password2' type='password')
+            br
+            input.btn.btn-primary(type='submit', value='Submit')
